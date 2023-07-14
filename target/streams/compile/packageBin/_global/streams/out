@@ -1,0 +1,33 @@
+[0m[[0m[0mdebug[0m] [0m[0mPackaging /Users/zenuser/Documents/writings/introduction-prog-fonctionelle/v2/exams/projet/funprog-al/target/scala-2.13/funprog-al_2.13-0.1.0-SNAPSHOT.jar ...[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	example[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/zenuser/Documents/writings/introduction-prog-fonctionelle/v2/exams/projet/funprog-al/target/scala-2.13/classes/example[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	example/Hello$.class[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/zenuser/Documents/writings/introduction-prog-fonctionelle/v2/exams/projet/funprog-al/target/scala-2.13/classes/example/Hello$.class[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	example/Hello$delayedInit$body.class[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/zenuser/Documents/writings/introduction-prog-fonctionelle/v2/exams/projet/funprog-al/target/scala-2.13/classes/example/Hello$delayedInit$body.class[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	example/Greeting$MyException.class[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/zenuser/Documents/writings/introduction-prog-fonctionelle/v2/exams/projet/funprog-al/target/scala-2.13/classes/example/Greeting$MyException.class[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	example/Hello.class[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/zenuser/Documents/writings/introduction-prog-fonctionelle/v2/exams/projet/funprog-al/target/scala-2.13/classes/example/Hello.class[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	example/Greeting$MyException$.class[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/zenuser/Documents/writings/introduction-prog-fonctionelle/v2/exams/projet/funprog-al/target/scala-2.13/classes/example/Greeting$MyException$.class[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	example/Greeting.class[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/zenuser/Documents/writings/introduction-prog-fonctionelle/v2/exams/projet/funprog-al/target/scala-2.13/classes/example/Greeting.class[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	application.conf[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/zenuser/Documents/writings/introduction-prog-fonctionelle/v2/exams/projet/funprog-al/target/scala-2.13/classes/application.conf[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	fr[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/zenuser/Documents/writings/introduction-prog-fonctionelle/v2/exams/projet/funprog-al/target/scala-2.13/classes/fr[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	fr/esgi[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/zenuser/Documents/writings/introduction-prog-fonctionelle/v2/exams/projet/funprog-al/target/scala-2.13/classes/fr/esgi[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	fr/esgi/al[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/zenuser/Documents/writings/introduction-prog-fonctionelle/v2/exams/projet/funprog-al/target/scala-2.13/classes/fr/esgi/al[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	fr/esgi/al/funprog[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/zenuser/Documents/writings/introduction-prog-fonctionelle/v2/exams/projet/funprog-al/target/scala-2.13/classes/fr/esgi/al/funprog[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	fr/esgi/al/funprog/Main$.class[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/zenuser/Documents/writings/introduction-prog-fonctionelle/v2/exams/projet/funprog-al/target/scala-2.13/classes/fr/esgi/al/funprog/Main$.class[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	fr/esgi/al/funprog/Main.class[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/zenuser/Documents/writings/introduction-prog-fonctionelle/v2/exams/projet/funprog-al/target/scala-2.13/classes/fr/esgi/al/funprog/Main.class[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	fr/esgi/al/funprog/Main$delayedInit$body.class[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/zenuser/Documents/writings/introduction-prog-fonctionelle/v2/exams/projet/funprog-al/target/scala-2.13/classes/fr/esgi/al/funprog/Main$delayedInit$body.class[0m[0J
+[0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m[0J

@@ -1,0 +1,17 @@
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(test, Some(352a28e0-dc39-465c-a85d-9b5490b01c40), Some(CommandSource(console0)))[0m
+[0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: Test / test[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mHelloSpec:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- The Hello object should say hello[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Hello size is equals to 5[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m-  "Hello"(6) should throw a "java.lang.StringIndexOutOfBoundsException" [0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mStringSpec:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- CHaine vide est  vide[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Chaine [0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 162 milliseconds.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 5[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mSuites: completed 2, aborted 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 5, failed 0, canceled 0, ignored 0, pending 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mAll tests passed.[0m[0m
+[0m[[0m[32msuccess[0m] [0m[0mTotal time: 0 s, completed 21 juin 2023 à 01:31:09[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(shell, None, None)[0m

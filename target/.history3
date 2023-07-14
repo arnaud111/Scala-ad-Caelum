@@ -1,0 +1,16 @@
+1638098605880:run example.Main
+1638098682338:runMain example.Hello
+1638098698787:exit
+1687302477661:reload
+1687302485732:compile
+1687302720996:reload
+1687302723358:compile
+1687302924648:reload
+1687302926624:compile
+1687303327037:reload
+1687303333086:compile
+1687303573778:reload
+1687303599073:compile
+1687303864597:Test/compile
+1687303869309:test
+1689350713988:;set _root_.scala.collection.Seq(historyPath := None,shellPrompt := { _ => "" },SettingKey[_root_.scala.Option[_root_.sbt.File]]("sbtStructureOutputFile") in _root_.sbt.Global := _root_.scala.Some(_root_.sbt.file("/tmp/sbt-structure.xml")),SettingKey[_root_.java.lang.String]("sbtStructureOptions") in _root_.sbt.Global := "download, resolveClassifiers");apply -cp "/home/nono/.local/share/JetBrains/IntelliJIdea2023.1/Scala/repo/org/jetbrains/scala/sbt-structure-extractor_2.12_1.0/2023.1.0/sbt-structure-extractor-2023.1.0.jar" org.jetbrains.sbt.CreateTasks;preferScala2;*/*:dumpStructure
