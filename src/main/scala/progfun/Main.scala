@@ -14,6 +14,10 @@ class Lawnmower (
   val instructions: String
 ) {
 
+  def toCsv(pos: Integer): String = {
+    pos.toString + ";" + this.start_x.toString + ";" + this.start_y.toString + ";" + this.start_dir.toString + ";" + this.pos_x.toString + ";" + this.pos_y.toString + ";" + this.dir.toString + ";" + this.instructions
+  }
+
   def toYaml: String = {
     "- debut:\n" +
       "    point:\n" +
@@ -110,12 +114,16 @@ object Main extends App {
   );
 
   val ls = computeLawnmowers(lawnmowers);
+
   val s_json =  gardenToJson(ls, x, y);
   val s_yaml =  gardenToYaml(ls, x, y);
+  val s_csv =  gardenToCsv(ls);
 
   val list_conf = File("export.conf").createIfNotExists().lines.toList;
+
   val export_file_json = getConf("json", list_conf);
   val export_file_yaml = getConf("yaml", list_conf);
+  val export_file_csv = getConf("csv", list_conf);
 
   export_file_json match {
     case Some(value) =>
@@ -133,6 +141,15 @@ object Main extends App {
     case None =>
       File("resources/default.yaml").createIfNotExists().overwrite(s_yaml);
       println("Yaml written in : resources/default.yaml");
+  }
+
+  export_file_csv match {
+    case Some(value) =>
+      File(value).createIfNotExists().overwrite(s_csv);
+      println("CSV written in : " + value);
+    case None =>
+      File("resources/default.csv").createIfNotExists().overwrite(s_csv);
+      println("CSV written in : resources/default.csv");
   }
 
   @tailrec
@@ -190,5 +207,10 @@ object Main extends App {
       "  y: " + y.toString + "\n" +
       "tondeuses:\n" +
       lawnmowers.map(l => l.toYaml).mkString("", "\n", "")
+  }
+
+  def gardenToCsv(lawnmowers: List[Lawnmower]): String = {
+    "numéro;début_x;début_y;début_direction;fin_x;fin_y;fin_direction;instructions\n" +
+      lawnmowers.zipWithIndex.map(value => value._1.toCsv(value._2 + 1)).mkString("", "\n", "")
   }
 }
