@@ -1,5 +1,7 @@
 package fr.esgi.al.funprog
 
+import better.files.File
+
 import scala.annotation.tailrec
 
 class Lawnmower (
@@ -12,7 +14,22 @@ class Lawnmower (
   val instructions: String
 ) {
 
-  def toJson(): String = {
+  def toYaml: String = {
+    "- debut:\n" +
+      "    point:\n" +
+      "      x: " + this.start_x.toString + "\n" +
+      "      y: " + this.start_y.toString + "\n" +
+      "    direction: " + this.start_dir.toString + "\n" +
+      "  instructions:\n" +
+      this.instructions.toArray.mkString("  - ", "\n  - ", "\n") +
+      "  fin:\n" +
+      "    point:\n" +
+      "      x: " + this.pos_x.toString + "\n" +
+      "      y: " + this.pos_y.toString + "\n" +
+      "    direction: " + this.dir.toString + "\n"
+  }
+
+  def toJson: String = {
     "{" +
       "\"debut\": {" +
         "\"point\": {" +
@@ -93,9 +110,44 @@ object Main extends App {
   );
 
   val ls = computeLawnmowers(lawnmowers);
-  val s =  gardenToJson(ls, x, y);
+  val s_json =  gardenToJson(ls, x, y);
+  val s_yaml =  gardenToYaml(ls, x, y);
 
-  println(s);
+  val list_conf = File("export.conf").createIfNotExists().lines.toList;
+  val export_file_json = getConf("json", list_conf);
+  val export_file_yaml = getConf("yaml", list_conf);
+
+  export_file_json match {
+    case Some(value) =>
+      File(value).createIfNotExists().overwrite(s_json);
+      println("Json written in : " + value);
+    case None =>
+      File("resources/default.json").createIfNotExists().overwrite(s_json);
+      println("Json written in : resources/default.json");
+  }
+
+  export_file_yaml match {
+    case Some(value) =>
+      File(value).createIfNotExists().overwrite(s_yaml);
+      println("Yaml written in : " + value);
+    case None =>
+      File("resources/default.yaml").createIfNotExists().overwrite(s_yaml);
+      println("Yaml written in : resources/default.yaml");
+  }
+
+  @tailrec
+  def getConf(searched: String, list_conf: List[String]): Option[String] = {
+    list_conf.headOption match {
+      case Some(value) =>
+        if (value.contains(searched)) {
+          Some(value.substring(searched.length + 1, value.length));
+        } else {
+          getConf(searched, list_conf.drop(1));
+        }
+      case None =>
+        None
+    }
+  }
 
   def computeLawnmowers(lawnmowers: List[Lawnmower]): List[Lawnmower] = {
     lawnmowers.headOption match {
@@ -127,8 +179,16 @@ object Main extends App {
         "\"y\": " + y.toString +
       "}," +
       "\"tondeuses\": [" +
-        lawnmowers.map(l => l.toJson()).mkString("", ",", "") +
+        lawnmowers.map(l => l.toJson).mkString("", ",", "") +
       "]" +
     "}";
+  }
+
+  def gardenToYaml(lawnmowers: List[Lawnmower], x: Integer, y: Integer): String = {
+    "limite:\n" +
+      "  x: " + x.toString + "\n" +
+      "  y: " + y.toString + "\n" +
+      "tondeuses:\n" +
+      lawnmowers.map(l => l.toYaml).mkString("", "\n", "")
   }
 }
