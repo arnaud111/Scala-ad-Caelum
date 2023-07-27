@@ -4,17 +4,17 @@ import better.files.File
 
 import scala.annotation.tailrec
 
-class Lawnmower (
-  val start_x: Integer,
-  val start_y: Integer,
-  val start_dir: Char,
-  val dir: Char,
-  val pos_x: Integer,
-  val pos_y: Integer,
-  val instructions: String
-) {
+class Lawnmower(
+                 val start_x: Int,
+                 val start_y: Int,
+                 val start_dir: Char,
+                 val dir: Char,
+                 val pos_x: Int,
+                 val pos_y: Int,
+                 val instructions: String
+               ) {
 
-  def toCsv(pos: Integer): String = {
+  def toCsv(pos: Int): String = {
     pos.toString + ";" + this.start_x.toString + ";" + this.start_y.toString + ";" + this.start_dir.toString + ";" + this.pos_x.toString + ";" + this.pos_y.toString + ";" + this.dir.toString + ";" + this.instructions
   }
 
@@ -36,66 +36,66 @@ class Lawnmower (
   def toJson: String = {
     "{" +
       "\"debut\": {" +
-        "\"point\": {" +
-          "\"x\": " + this.start_x.toString + "," +
-          "\"y\": " + this.start_y.toString +
-        "}," +
-        "\"direction\": \"" + this.start_dir.toString + "\"" +
+      "\"point\": {" +
+      "\"x\": " + this.start_x.toString + "," +
+      "\"y\": " + this.start_y.toString +
+      "}," +
+      "\"direction\": \"" + this.start_dir.toString + "\"" +
       "}," +
       "\"instructions\": " + this.instructions.toArray.mkString("[\"", "\",\"", "\"],") +
       "\"fin\": {" +
-        "\"point\": {" +
-          "\"x\": " + this.pos_x.toString + "," +
-          "\"y\": " + this.pos_y.toString +
-        "}," +
-        "\"direction\": \"" + this.dir.toString + "\"" +
+      "\"point\": {" +
+      "\"x\": " + this.pos_x.toString + "," +
+      "\"y\": " + this.pos_y.toString +
+      "}," +
+      "\"direction\": \"" + this.dir.toString + "\"" +
       "}" +
-    "}"
+      "}"
   }
 
-  def move(i: Integer, max_x: Integer, max_y: Integer): Lawnmower = {
+  def move(i: Int, gardenSize: (Int, Int)): Lawnmower = {
     if (instructions.length > i) {
       (instructions.charAt(i), this.dir) match {
         case ('A', 'N') =>
-          if (this.pos_y < max_y) {
-            new Lawnmower(this.start_x, this.start_y, this.start_dir, this.dir, this.pos_x, this.pos_y + 1, this.instructions).move(i + 1, max_x, max_y);
+          if (this.pos_y < gardenSize._2) {
+            new Lawnmower(this.start_x, this.start_y, this.start_dir, this.dir, this.pos_x, this.pos_y + 1, this.instructions).move(i + 1, gardenSize);
           } else {
-            this.move(i + 1, max_x, max_y);
+            this.move(i + 1, gardenSize);
           }
         case ('A', 'S') =>
           if (this.pos_y > 0) {
-            new Lawnmower(this.start_x, this.start_y, this.start_dir, this.dir, this.pos_x, this.pos_y - 1, this.instructions).move(i + 1, max_x, max_y);
+            new Lawnmower(this.start_x, this.start_y, this.start_dir, this.dir, this.pos_x, this.pos_y - 1, this.instructions).move(i + 1, gardenSize);
           } else {
-            this.move(i + 1, max_x, max_y);
+            this.move(i + 1, gardenSize);
           }
         case ('A', 'E') =>
-          if (this.pos_x < max_x) {
-            new Lawnmower(this.start_x, this.start_y, this.start_dir, this.dir, this.pos_x + 1, this.pos_y, this.instructions).move(i + 1, max_x, max_y);
+          if (this.pos_x < gardenSize._1) {
+            new Lawnmower(this.start_x, this.start_y, this.start_dir, this.dir, this.pos_x + 1, this.pos_y, this.instructions).move(i + 1, gardenSize);
           } else {
-            this.move(i + 1, max_x, max_y);
+            this.move(i + 1, gardenSize);
           }
         case ('A', 'W') =>
           if (this.pos_x > 0) {
-            new Lawnmower(this.start_x, this.start_y, this.start_dir, this.dir, this.pos_x - 1, this.pos_y, this.instructions).move(i + 1, max_x, max_y);
+            new Lawnmower(this.start_x, this.start_y, this.start_dir, this.dir, this.pos_x - 1, this.pos_y, this.instructions).move(i + 1, gardenSize);
           } else {
-            this.move(i + 1, max_x, max_y);
+            this.move(i + 1, gardenSize);
           }
         case ('D', 'N') =>
-          new Lawnmower(this.start_x, this.start_y, this.start_dir, 'E', this.pos_x, this.pos_y, this.instructions).move(i + 1, max_x, max_y);
+          new Lawnmower(this.start_x, this.start_y, this.start_dir, 'E', this.pos_x, this.pos_y, this.instructions).move(i + 1, gardenSize);
         case ('D', 'S') =>
-          new Lawnmower(this.start_x, this.start_y, this.start_dir, 'W', this.pos_x, this.pos_y, this.instructions).move(i + 1, max_x, max_y);
+          new Lawnmower(this.start_x, this.start_y, this.start_dir, 'W', this.pos_x, this.pos_y, this.instructions).move(i + 1, gardenSize);
         case ('D', 'E') =>
-          new Lawnmower(this.start_x, this.start_y, this.start_dir, 'S', this.pos_x, this.pos_y, this.instructions).move(i + 1, max_x, max_y);
+          new Lawnmower(this.start_x, this.start_y, this.start_dir, 'S', this.pos_x, this.pos_y, this.instructions).move(i + 1, gardenSize);
         case ('D', 'W') =>
-          new Lawnmower(this.start_x, this.start_y, this.start_dir, 'N', this.pos_x, this.pos_y, this.instructions).move(i + 1, max_x, max_y);
+          new Lawnmower(this.start_x, this.start_y, this.start_dir, 'N', this.pos_x, this.pos_y, this.instructions).move(i + 1, gardenSize);
         case ('G', 'N') =>
-          new Lawnmower(this.start_x, this.start_y, this.start_dir, 'W', this.pos_x, this.pos_y, this.instructions).move(i + 1, max_x, max_y);
+          new Lawnmower(this.start_x, this.start_y, this.start_dir, 'W', this.pos_x, this.pos_y, this.instructions).move(i + 1, gardenSize);
         case ('G', 'S') =>
-          new Lawnmower(this.start_x, this.start_y, this.start_dir, 'E', this.pos_x, this.pos_y, this.instructions).move(i + 1, max_x, max_y);
+          new Lawnmower(this.start_x, this.start_y, this.start_dir, 'E', this.pos_x, this.pos_y, this.instructions).move(i + 1, gardenSize);
         case ('G', 'E') =>
-          new Lawnmower(this.start_x, this.start_y, this.start_dir, 'N', this.pos_x, this.pos_y, this.instructions).move(i + 1, max_x, max_y);
+          new Lawnmower(this.start_x, this.start_y, this.start_dir, 'N', this.pos_x, this.pos_y, this.instructions).move(i + 1, gardenSize);
         case ('G', 'W') =>
-          new Lawnmower(this.start_x, this.start_y, this.start_dir, 'S', this.pos_x, this.pos_y, this.instructions).move(i + 1, max_x, max_y);
+          new Lawnmower(this.start_x, this.start_y, this.start_dir, 'S', this.pos_x, this.pos_y, this.instructions).move(i + 1, gardenSize);
       }
     } else {
       this
@@ -105,51 +105,106 @@ class Lawnmower (
 
 object Main extends App {
 
-  val x: Integer = 5;
-  val y: Integer = 5;
+  val f = File("input.txt");
 
-  val lawnmowers: List[Lawnmower] = List(
-    new Lawnmower(1, 2, 'N', 'N', 1, 2, "GAGAGAGAA"),
-    new Lawnmower(3, 3, 'N', 'E', 3, 3, "AADAADADDA"),
-  );
+  if (f.exists) {
+    val lines = f.lines;
 
-  val ls = computeLawnmowers(lawnmowers);
+    lines.headOption match {
+      case Some(line) =>
+        val optionalGardenSize: Option[(Int, Int)] = getGardenSize(line);
+        val optionalLawnmowers: Option[List[Lawnmower]] = getLawnmowers(lines.drop(1).toList, List());
 
-  val s_json =  gardenToJson(ls, x, y);
-  val s_yaml =  gardenToYaml(ls, x, y);
-  val s_csv =  gardenToCsv(ls);
-
-  val list_conf = File("export.conf").createIfNotExists().lines.toList;
-
-  val export_file_json = getConf("json", list_conf);
-  val export_file_yaml = getConf("yaml", list_conf);
-  val export_file_csv = getConf("csv", list_conf);
-
-  export_file_json match {
-    case Some(value) =>
-      File(value).createIfNotExists().overwrite(s_json);
-      println("Json written in : " + value);
-    case None =>
-      File("resources/default.json").createIfNotExists().overwrite(s_json);
-      println("Json written in : resources/default.json");
+        (optionalGardenSize, optionalLawnmowers) match {
+          case (Some(gardenSize), Some(lawnmowers)) =>
+            val ls = computeLawnmowers(lawnmowers, gardenSize);
+            exportComputedLawnmowers(ls, gardenSize);
+          case _ => print("Bad input file")
+        }
+      case _ => print("Bad input file")
+    }
   }
 
-  export_file_yaml match {
-    case Some(value) =>
-      File(value).createIfNotExists().overwrite(s_yaml);
-      println("Yaml written in : " + value);
-    case None =>
-      File("resources/default.yaml").createIfNotExists().overwrite(s_yaml);
-      println("Yaml written in : resources/default.yaml");
+  def getGardenSize(line: String): Option[(Int, Int)] = {
+    val lineData = line.split(" ");
+    lineData.length match {
+      case 2 =>
+        (lineData.apply(0).toIntOption, lineData.apply(1).toIntOption) match {
+          case (Some(x), Some(y)) =>
+            Option.apply((x, y))
+          case _ => Option.empty
+        }
+      case _ => Option.empty
+    }
   }
 
-  export_file_csv match {
-    case Some(value) =>
-      File(value).createIfNotExists().overwrite(s_csv);
-      println("CSV written in : " + value);
-    case None =>
-      File("resources/default.csv").createIfNotExists().overwrite(s_csv);
-      println("CSV written in : resources/default.csv");
+  def getLawnmowers(lines: List[String], lawnmowers: List[Lawnmower]): Option[List[Lawnmower]] = {
+    if (lines.size >= 2) {
+      lines.headOption match {
+        case Some(line) =>
+          val lineData = line.split(" ");
+          lineData.length match {
+            case 3 =>
+              (lineData.apply(0).toIntOption, lineData.apply(1).toIntOption) match {
+                case (Some(x), Some(y)) =>
+                  val lawnmower = new Lawnmower(
+                    x,
+                    y,
+                    lineData.apply(2).toCharArray.apply(0),
+                    lineData.apply(2).toCharArray.apply(0),
+                    x,
+                    y,
+                    lines.apply(1)
+                  )
+                  getLawnmowers(lines.drop(2), lawnmowers :+ lawnmower);
+                case _ => Option.empty
+              }
+            case _ => Option.empty
+          }
+        case _ => Option.empty
+      }
+    } else {
+      Option.apply(lawnmowers)
+    }
+  }
+
+  def exportComputedLawnmowers(ls: List[Lawnmower], gardenSize: (Int, Int)): Unit = {
+    val s_json = gardenToJson(ls, gardenSize._1, gardenSize._2);
+    val s_yaml = gardenToYaml(ls, gardenSize._1, gardenSize._2);
+    val s_csv = gardenToCsv(ls);
+
+    val list_conf = File("export.conf").createIfNotExists().lines.toList;
+
+    val export_file_json = getConf("json", list_conf);
+    val export_file_yaml = getConf("yaml", list_conf);
+    val export_file_csv = getConf("csv", list_conf);
+
+    export_file_json match {
+      case Some(value) =>
+        File(value).createIfNotExists().overwrite(s_json);
+        println("Json written in : " + value);
+      case None =>
+        File("resources/default.json").createIfNotExists().overwrite(s_json);
+        println("Json written in : resources/default.json");
+    }
+
+    export_file_yaml match {
+      case Some(value) =>
+        File(value).createIfNotExists().overwrite(s_yaml);
+        println("Yaml written in : " + value);
+      case None =>
+        File("resources/default.yaml").createIfNotExists().overwrite(s_yaml);
+        println("Yaml written in : resources/default.yaml");
+    }
+
+    export_file_csv match {
+      case Some(value) =>
+        File(value).createIfNotExists().overwrite(s_csv);
+        println("CSV written in : " + value);
+      case None =>
+        File("resources/default.csv").createIfNotExists().overwrite(s_csv);
+        println("CSV written in : resources/default.csv");
+    }
   }
 
   @tailrec
@@ -166,11 +221,11 @@ object Main extends App {
     }
   }
 
-  def computeLawnmowers(lawnmowers: List[Lawnmower]): List[Lawnmower] = {
+  def computeLawnmowers(lawnmowers: List[Lawnmower], gardenSize: (Int, Int)): List[Lawnmower] = {
     lawnmowers.headOption match {
       case Some(value) =>
-        val l = value.move(0, x, y);
-        val ls = computeLawnmowers(lawnmowers.drop(1));
+        val l = value.move(0, gardenSize);
+        val ls = computeLawnmowers(lawnmowers.drop(1), gardenSize);
         ls.appended(l);
       case None =>
         println("End")
@@ -189,19 +244,19 @@ object Main extends App {
     }
   }
 
-  def gardenToJson(lawnmowers: List[Lawnmower], x: Integer, y: Integer): String = {
+  def gardenToJson(lawnmowers: List[Lawnmower], x: Int, y: Int): String = {
     "{" +
       "\"limite\": {" +
-        "\"x\": " + x.toString + "," +
-        "\"y\": " + y.toString +
+      "\"x\": " + x.toString + "," +
+      "\"y\": " + y.toString +
       "}," +
       "\"tondeuses\": [" +
-        lawnmowers.map(l => l.toJson).mkString("", ",", "") +
+      lawnmowers.map(l => l.toJson).mkString("", ",", "") +
       "]" +
-    "}";
+      "}";
   }
 
-  def gardenToYaml(lawnmowers: List[Lawnmower], x: Integer, y: Integer): String = {
+  def gardenToYaml(lawnmowers: List[Lawnmower], x: Int, y: Int): String = {
     "limite:\n" +
       "  x: " + x.toString + "\n" +
       "  y: " + y.toString + "\n" +

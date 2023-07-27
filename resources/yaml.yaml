@@ -6,7 +6,7 @@ tondeuses:
     point:
       x: 3
       y: 3
-    direction: N
+    direction: E
   instructions:
   - A
   - A
